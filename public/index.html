@@ -1,11 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Meta tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Daniil Tsivinsky" />
+    <meta name="description" content="To-Do App built with Svelte.js" />
+    <meta
+      name="keywords"
+      content="to-do,svelte,sveltejs,productivity,education"
+    />
+    <meta name="theme-color" content="#ff3e00" />
+
+    <!-- Open-Graph tags -->
+    <meta name="og:title" content="Svelte To-Do App" />
+    <meta name="og:description" content="To-Do App built with Svelte" />
+    <meta name="og:image" content="images/svelte.png" />
+    <meta name="og:image:type" content="image/png" />
+    <meta name="og:image:width" content="400" />
+    <meta name="og:image:height" content="400" />
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+    <link rel="canonical" href="https://svelte-todo.tsivinsky.com/" />
+
     <title>Svelte To-Do</title>
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- CSS and JS -->
     <link rel="stylesheet" href="style.css" />
     <script src="bundle.min.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then((reg) => console.log("Service worker registered", reg))
+          .catch((err) => console.error(err));
+      }
+    </script>
+  </body>
 </html>
