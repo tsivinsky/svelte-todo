@@ -1,0 +1,26 @@
+{
+  "name": "svelte-todo",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "author": "Daniil Tsivinsky <daniil@tsivinsky.com> (https://tsivinsky.com)",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c --serve --watch"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "rollup": "^2.36.2",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-scss": "^2.6.1",
+    "rollup-plugin-serve": "^1.1.0",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.32.4",
+    "svelte": "^3.31.2",
+    "svelte-preprocess": "^4.6.1"
+  }
+}
