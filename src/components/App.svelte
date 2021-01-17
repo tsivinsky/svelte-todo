@@ -2,7 +2,6 @@
   import { onMount, afterUpdate } from "svelte";
   import Todo from "./Todo.svelte";
   import AddTodoForm from "./AddTodoForm.svelte";
-  import Button from "./Button.svelte";
 
   let todos = [];
 
@@ -56,7 +55,6 @@
 
 <header>
   <h1 class="title">Svelte To-Do</h1>
-  <Button on:click={() => console.log("clicked")} />
 </header>
 <main>
   <div class="inner-block">
