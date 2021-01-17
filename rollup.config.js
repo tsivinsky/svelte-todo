@@ -7,11 +7,14 @@ import { terser } from "rollup-plugin-terser";
 import serve from "rollup-plugin-serve";
 import scss from "rollup-plugin-scss";
 import livereload from "rollup-plugin-livereload";
+import copy from "rollup-plugin-copy";
+
+const DEST_DIR = "build";
 
 const config = {
   input: "src/app.js",
   output: {
-    file: "public/bundle.min.js",
+    file: `${DEST_DIR}/bundle.min.js`,
     format: "iife",
   },
   plugins: [
@@ -32,7 +35,15 @@ const config = {
     }),
     terser(),
     scss({
-      output: "public/style.css",
+      output: `${DEST_DIR}/style.css`,
+    }),
+    copy({
+      targets: [
+        {
+          src: "public/**/*",
+          dest: DEST_DIR,
+        },
+      ],
     }),
   ],
 };
@@ -40,8 +51,8 @@ const config = {
 export default (args) => {
   if (args.serve === true) {
     config.plugins.push(
-      serve({ contentBase: "public", port: 3000 }),
-      livereload({ watch: "public" })
+      serve({ contentBase: DEST_DIR, port: 3000 }),
+      livereload({ watch: DEST_DIR })
     );
   }
 
