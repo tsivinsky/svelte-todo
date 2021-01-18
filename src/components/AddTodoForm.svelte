@@ -1,7 +1,15 @@
 <script>
+  import { createEventDispatcher } from "svelte";
+  const dispatch = createEventDispatcher();
+
   let text;
 
-  export let onAdd;
+  function onAdd() {
+    dispatch("addtodo", {
+      text,
+      clearInput,
+    });
+  }
 
   function clearInput() {
     text = "";
@@ -10,9 +18,7 @@
 
 <form>
   <input type="text" placeholder="What do you want to do?" bind:value={text} />
-  <button type="submit" on:click|preventDefault={() => onAdd(text, clearInput)}
-    >Add</button
-  >
+  <button type="submit" on:click|preventDefault={onAdd}>Add</button>
 </form>
 
 <style lang="scss">

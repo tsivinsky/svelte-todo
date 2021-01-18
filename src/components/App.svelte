@@ -6,7 +6,9 @@
   let todos = [];
 
   // Function for adding todos to the array
-  function addTodo(text = "", clearInput) {
+  function addTodo(e) {
+    const { text, clearInput } = e.detail;
+
     if (text === "") return;
 
     const newTodo = {
@@ -21,21 +23,21 @@
   }
 
   // Function completing one todo in array
-  function completeTodo(id) {
-    const newTodos = todos.map((todo) => {
-      if (todo.id == id) {
-        return { ...todo, completed: !todo.completed };
-      }
+  function completeTodo(e) {
+    const { id } = e.detail;
 
-      return todo;
-    });
+    const newTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : { ...todo }
+    );
 
     todos = newTodos;
   }
 
   // Function for removing todo from array
-  function removeTodo(id) {
-    const newTodos = todos.filter((todo) => todo.id != id);
+  function removeTodo(e) {
+    const { id } = e.detail;
+
+    const newTodos = todos.filter((todo) => todo.id !== id);
 
     todos = newTodos;
   }
@@ -58,10 +60,14 @@
 </header>
 <main>
   <div class="inner-block">
-    <AddTodoForm onAdd={addTodo} />
+    <AddTodoForm on:addtodo={addTodo} />
     <div class="todos">
       {#each todos as todo (todo.id)}
-        <Todo {...todo} onComplete={completeTodo} onRemove={removeTodo} />
+        <Todo
+          {...todo}
+          on:completetodo={completeTodo}
+          on:removetodo={removeTodo}
+        />
       {/each}
     </div>
   </div>

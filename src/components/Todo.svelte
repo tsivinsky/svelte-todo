@@ -1,10 +1,23 @@
 <script>
+  import { createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
+
   export let text = "";
   export let completed = false;
   export let id = 1;
 
-  export let onComplete;
-  export let onRemove;
+  function onComplete() {
+    dispatch("completetodo", {
+      id,
+    });
+  }
+
+  function onRemove() {
+    dispatch("removetodo", {
+      id,
+    });
+  }
 </script>
 
 <div class="todo">
@@ -12,9 +25,8 @@
     {text}
   </p>
   <div class="buttons">
-    <button class="btn-complete-todo" on:click={onComplete(id)}>Complete</button
-    >
-    <button class="btn-remove-todo" on:click={onRemove(id)}>Remove</button>
+    <button class="btn-complete-todo" on:click={onComplete}>Complete</button>
+    <button class="btn-remove-todo" on:click={onRemove}>Remove</button>
   </div>
 </div>
 
@@ -32,7 +44,8 @@
     transition-property: border-color, box-shadow;
     &:hover {
       border-color: $primary;
-      box-shadow: 4px 3px 5px 6px rgba(0, 0, 0, 0.1);
+      // box-shadow: 4px 3px 5px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 3px 10px 5px rgba(0, 0, 0, 0.1);
     }
     p {
       font-size: larger;
